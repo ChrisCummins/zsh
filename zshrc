@@ -167,6 +167,8 @@ zle -N rationalise-dot
 bindkey . rationalise-dot
 bindkey -M isearch . self-insert
 
+source $ZSH/oh-my-zsh.sh
+
 # --------------------------------------------------------------------------
 # Command modifiers.
 # --------------------------------------------------------------------------
@@ -429,7 +431,6 @@ todo() {
 # External files.
 # --------------------------------------------------------------------------
 external_files=(                        \
-    "$ZSH/oh-my-zsh.sh"                 \
     "$ZSH_ROOT/addresses.zsh"           \
     "$ZSH_ROOT/intel.zsh"               \
     "/etc/black-env.sh"                 \
