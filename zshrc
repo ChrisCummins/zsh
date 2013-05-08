@@ -454,7 +454,7 @@ for f in ${external_files[@]}; do
 done
 
 # Load local files.
-for f in $(find "$ZSH_ROOT/local/" -name '*.zsh'); do
+for f in $(find "$ZSH_ROOT/local/" -name '*.zsh' 2>/dev/null); do
     source "$f"
 done
 
