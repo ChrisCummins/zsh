@@ -216,7 +216,6 @@ alias l='less'
 alias g='grep'
 
 # The Church of Emacs.
-alias e='emacsclient -t'
 alias ew='emacs >/dev/null 2>&1 &'
 alias enw='exec emacs -nw'
 alias et='emacsclient -t'
@@ -355,6 +354,17 @@ mkudir() {
     sudo chown $user $@
     sudo chgrp $user $@
 }
+
+# Open an Emacs client if there is a server, else use vim.
+emacs_else_vim() {
+	if [ -e /tmp/emacs$UID/server ]; then
+		emacsclient -t $@
+	else
+		vim $@
+	fi
+}
+
+alias e=emacs_else_vim
 
 # Search for process by name.
 pgrep() {
