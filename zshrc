@@ -441,8 +441,6 @@ todo() {
 # External files.
 # --------------------------------------------------------------------------
 external_files=(                        \
-    "$ZSH_ROOT/addresses.zsh"           \
-    "$ZSH_ROOT/intel.zsh"               \
     "/etc/black-env.sh"                 \
     )
 
@@ -453,6 +451,11 @@ for f in ${external_files[@]}; do
     } || {
         echo "$(pwd)/zshrc:$LINENO: file not found '$f'" >&2
     }
+done
+
+# Load local files.
+for f in $(find "$ZSH_ROOT/local/" -name '*.zsh'); do
+    source "$f"
 done
 
 unsetopt correctall
