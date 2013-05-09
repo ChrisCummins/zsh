@@ -438,23 +438,12 @@ todo() {
 }
 
 # --------------------------------------------------------------------------
-# External files.
+# Local files.
 # --------------------------------------------------------------------------
-external_files=(                        \
-    "/etc/black-env.sh"                 \
-    )
 
-# Load external files.
-for f in ${external_files[@]}; do
-    test -f "$f" && {
-        source "$f"
-    } || {
-        echo "$(pwd)/zshrc:$LINENO: file not found '$f'" >&2
-    }
-done
-
-# Load local files.
-for f in $(find "$ZSH_ROOT/local/" -name '*.zsh' 2>/dev/null); do
+# Custom zsh scripts that are placed in the local/ directory will automatically
+# be sourced at launch.
+for f in `find "$ZSH_ROOT/local/" -name '*.zsh' -o -name '*.sh' 2>/dev/null`; do
     source "$f"
 done
 
