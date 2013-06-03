@@ -235,6 +235,8 @@ alias xo='xdg-open'
 # --------------------------------------------------------------------------
 # Shell environment.
 # --------------------------------------------------------------------------
+export ZSHRC="~/.zshrc"
+
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
 export HISTSIZE=25000
 export HISTFILE=~/.zsh_history
