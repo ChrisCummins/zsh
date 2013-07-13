@@ -229,8 +229,6 @@ alias st='dirs -v'
 # Ping test.
 alias pingg='ping -c 3 www.google.com'
 
-# Easy-open.
-alias xo='xdg-open'
 
 # --------------------------------------------------------------------------
 # Shell environment.
@@ -437,6 +435,11 @@ todo() {
     done
 
     return 0
+}
+
+# Easy-open.
+xo() {
+    xdg-open $@ &>/dev/null
 }
 
 # --------------------------------------------------------------------------
