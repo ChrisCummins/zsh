@@ -38,8 +38,8 @@ HISTCONTROL=ignoreboth
 
 setopt AUTO_CD              # cd by just entering the directory
 setopt AUTO_PUSHD           # Auto pushd
-setopt autocontinue         # Background processes aren't killed on exit of shell.
-setopt clobber              # Allow clobbering with >
+setopt autocontinue         # Background processes aren't killed on exit of shell
+setopt clobber              # Allow clobbering with output redirection
 setopt EXTENDED_GLOB        # Extended globbing
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
