@@ -49,10 +49,6 @@ setopt MULTIOS              # Pipe to multiple outputs
 setopt NO_BEEP              # Beeps are annoying
 setopt NO_CORRECT           # Disable command spell check
 setopt NO_FLOW_CONTROL      # If I could disable Ctrl-s completely I would!
-setopt nocorrect            # For the love of good let me make typos
-setopt nocorrectall         # ^^ See above
-unsetopt correct            # ^^ See above
-unsetopt correctall         # ^^ See above
 unsetopt histverify         # Don't reload history lines
 
 # --------------------------------------------------------------------------
@@ -451,4 +447,9 @@ for f in `find "$ZSH_ROOT/local/" -name '*.zsh' -o -name '*.sh' 2>/dev/null`; do
     source "$f"
 done
 
-unsetopt correctall
+
+# Uncomment the following lines to disable error correction
+# setopt nocorrect
+# setopt nocorrectall
+# unsetopt correct
+# unsetopt correctall
