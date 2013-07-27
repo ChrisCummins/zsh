@@ -180,6 +180,7 @@ alias chown='chown --preserve-root'
 if [[ ${EUID} != 0 ]]; then
     alias chmod='sudo chmod'
     alias chown='sudo chown'
+    alias ifconfig='sudo ifconfig'
     alias mount='sudo mount'
     alias reboot='sudo reboot'
     alias shutdown='sudo shutdown'
