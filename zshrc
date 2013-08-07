@@ -284,10 +284,36 @@ export USE_CCACHE=1
 # --------------------------------------------------------------------------
 # Path.
 # --------------------------------------------------------------------------
-export PATH=~/emacs/bin:$PATH
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/android-sdks/platform-tools
-export PATH=$PATH:~/bin
+
+# The list of directories to add to the path. Directories are added sequentially
+# from first to last. A directory is only added if it exists.
+path_dirs=( \
+	~/bin \
+	~/.local/bin \
+	~/emacs/bin \
+	~/android-sdks/platform-tools \
+	/usr/lib/ccache \
+	/usr/local/bin \
+	/usr/contrib/bin \
+ 	/opt/bin \
+	/bin \
+	/usr/bin \
+	/usr/local/games \
+	/usr/games \
+)
+
+# Build path from directory list
+unset PATH
+for d in "${path_dirs[@]}"
+do
+	if [ -d $d ]; then
+		PATH=$PATH:$d
+	fi
+done
+
+# Strip the leading ':' from the path
+export PATH=${PATH:1}
+unset path_dirs
 
 # --------------------------------------------------------------------------
 # Shell functions.
