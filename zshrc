@@ -60,6 +60,7 @@ unsetopt histverify         # Don't reload history lines
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(    \
     ant      \
+    debian   \
     extract  \
     git      \
     git-flow \
