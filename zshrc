@@ -207,9 +207,10 @@ fi
 # New Commands.
 # --------------------------------------------------------------------------
 
-# Single letter shortcuts.
+# Shortcuts.
 alias l='less'
 alias g='grep'
+alias ll='ls -lh'
 
 # The Church of Emacs.
 alias ew='emacs >/dev/null 2>&1 &'
