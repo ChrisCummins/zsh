@@ -1,7 +1,7 @@
 # -*- mode: sh -*-
 
 # Base directory for zshell.
-ZSH_ROOT=$HOME/zsh
+ZSH_ROOT=$HOME/.local/src/zsh
 
 # Path to your oh-my-zsh configuration.
 ZSH=$ZSH_ROOT/oh-my-zsh
