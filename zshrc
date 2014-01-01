@@ -69,7 +69,7 @@ plugins=(    \
     python   \
     rails    \
     ruby     \
-)
+    )
 
 # --------------------------------------------------------------------------
 # Key bindings.
@@ -151,11 +151,11 @@ zstyle ':completion:*' cache-path /usr/share/zsh/cache
 function rationalise-dot {
     local MATCH
     if [[ $LBUFFER =~ '(^|/| |      |'$'\n''|\||;|&)\.\.$' ]]; then
-      LBUFFER+=/
-      zle self-insert
-      zle self-insert
+        LBUFFER+=/
+        zle self-insert
+        zle self-insert
     else
-      zle self-insert
+        zle self-insert
     fi
 }
 zle -N rationalise-dot
@@ -290,27 +290,26 @@ export USE_CCACHE=1
 # The list of directories to add to the path. Directories are added sequentially
 # from first to last. A directory is only added if it exists.
 path_dirs=( \
-	~/bin \
-	~/.local/bin \
-	~/emacs/bin \
-	~/android-sdks/platform-tools \
-	/usr/lib/ccache \
-	/usr/local/bin \
-	/usr/contrib/bin \
- 	/opt/bin \
-	/bin \
-	/usr/bin \
-	/usr/local/games \
-	/usr/games \
-)
+    ~/bin \
+    ~/.local/bin \
+    ~/android-sdks/platform-tools \
+    /usr/lib/ccache \
+    /usr/local/bin \
+    /usr/contrib/bin \
+    /opt/bin \
+    /bin \
+    /usr/bin \
+    /usr/local/games \
+    /usr/games \
+    )
 
 # Build path from directory list
 unset PATH
 for d in "${path_dirs[@]}"
 do
-	if [ -d $d ]; then
-		PATH=$PATH:$d
-	fi
+    if [ -d $d ]; then
+        PATH=$PATH:$d
+    fi
 done
 
 # Strip the leading ':' from the path
@@ -380,11 +379,11 @@ mkudir() {
 
 # Open an Emacs client if there is a server, else use vim.
 emacs_else_vim() {
-	if [ -e /tmp/emacs$UID/server ]; then
-		emacsclient -t $@
-	else
-		vim $@
-	fi
+    if [ -e /tmp/emacs$UID/server ]; then
+        emacsclient -t $@
+    else
+        vim $@
+    fi
 }
 
 alias e=emacs_else_vim
