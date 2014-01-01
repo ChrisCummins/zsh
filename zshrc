@@ -232,6 +232,8 @@ alias pingg='ping -c 3 www.google.com'
 # --------------------------------------------------------------------------
 export ZSHRC="~/.zshrc"
 
+export EMACSRC="~/.emacs.d/personal/init.el"
+
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
 export HISTSIZE=25000
 export HISTFILE=~/.zsh_history
