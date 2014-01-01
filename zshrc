@@ -230,9 +230,9 @@ alias pingg='ping -c 3 www.google.com'
 # --------------------------------------------------------------------------
 # Shell environment.
 # --------------------------------------------------------------------------
-export ZSHRC="~/.zshrc"
+export ZSHRC="$HOME/.zshrc"
 
-export EMACSRC="~/.emacs.d/personal/init.el"
+export EMACSRC="$HOME/.emacs.d/personal/init.el"
 
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
 export HISTSIZE=25000
