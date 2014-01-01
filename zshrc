@@ -262,6 +262,8 @@ export ALTERNATE_EDITOR=''
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
+export TERM=xterm-256color
+
 test -n "$EMACS" && {
     # Emacs shell specific configuration goes here.
 }
