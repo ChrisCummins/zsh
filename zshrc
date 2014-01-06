@@ -286,6 +286,7 @@ export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
 export JHBUILDRC=~/.config/jhbuildrc
 export WESTON_INI=~/.config/weston.ini
 export USE_CCACHE=1
+export NODE_PATH=/usr/local/lib/node_modules
 
 # --------------------------------------------------------------------------
 # Path.
