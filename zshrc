@@ -299,7 +299,7 @@ path_dirs=( \
     ~/.local/bin \
     ~/android-sdks/platform-tools \
     /usr/lib/ccache \
-    /usr/lib/postgresql/*/bin \
+    /usr/lib/postgresql/9.1/bin \
     /usr/local/bin \
     /usr/contrib/bin \
     /opt/bin \
