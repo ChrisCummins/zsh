@@ -297,6 +297,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 path_dirs=( \
     ~/bin \
     ~/.local/bin \
+    ~/.cabal/bin \
     ~/.rvm/bin \
     ~/android-sdks/platform-tools \
     /usr/lib/ccache \
