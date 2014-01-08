@@ -297,6 +297,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 path_dirs=( \
     ~/bin \
     ~/.local/bin \
+    ~/.rvm/bin \
     ~/android-sdks/platform-tools \
     /usr/lib/ccache \
     /usr/lib/postgresql/9.1/bin \
