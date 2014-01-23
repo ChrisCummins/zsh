@@ -302,6 +302,7 @@ path_dirs=( \
     ~/android-sdks/platform-tools \
     /usr/lib/ccache \
     /usr/lib/postgresql/9.1/bin \
+    /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin \
     /usr/local/bin \
     /usr/contrib/bin \
     /opt/bin \
