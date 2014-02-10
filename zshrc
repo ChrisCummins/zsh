@@ -266,10 +266,6 @@ export VISUAL=$EDITOR
 
 export TERM=xterm-256color
 
-test -n "$EMACS" && {
-    # Emacs shell specific configuration goes here.
-}
-
 # --------------------------------------------------------------------------
 # Mail.
 # --------------------------------------------------------------------------
