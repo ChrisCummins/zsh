@@ -284,6 +284,11 @@ export WESTON_INI=~/.config/weston.ini
 export USE_CCACHE=1
 export NODE_PATH=/usr/local/lib/node_modules
 
+# We can set ENV_NAME to name an environment, e.g. "dev".
+test -n "$ENV_NAME" && {
+    export PS1="%{$fg[green]%}[$ENV_NAME]%{$reset_color%} $PS1"
+}
+
 # --------------------------------------------------------------------------
 # Path.
 # --------------------------------------------------------------------------
