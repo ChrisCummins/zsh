@@ -101,6 +101,11 @@ insert_sudo () { zle beginning-of-line; zle -U "sudo " }
 zle -N insert-sudo insert_sudo
 bindkey "^[s" insert-sudo
 
+# Alt+t inserts time at the start of a line
+insert_time () { zle beginning-of-line; zle -U "time " }
+zle -N insert-time insert_time
+bindkey "^[t" insert-time
+
 bindkey -s '\eu' '^Ucd ..^M' # Meta-u to chdir to the parent directory
 bindkey -s '\ep' '^Upopd >/dev/null^M' # If AUTO_PUSHD is set, Meta-p pops the dir stack
 
