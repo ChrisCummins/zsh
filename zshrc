@@ -191,8 +191,7 @@ if [[ ${EUID} != 0 ]]; then
 fi
 
 # Enable pretty colors.
-if [ -x /usr/bin/dircolors ]
-then
+if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" \
         || eval "$(dircolors -b)"
 
@@ -255,8 +254,7 @@ export VIEW=/usr/bin/elinks
 export PAGER="less"
 export LESS="--ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm \
              --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
-if [[ -x $(which lesspipe.sh) ]]
-then
+if [[ -x $(which lesspipe.sh) ]]; then
     LESSOPEN="| lesspipe.sh %s"
     export LESSOPEN
 fi
