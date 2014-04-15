@@ -312,6 +312,7 @@ path_dirs=( \
     /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin \
     /usr/local/bin \
     /usr/contrib/bin \
+    /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64 \
     /opt/bin \
     /bin \
     /usr/bin \
