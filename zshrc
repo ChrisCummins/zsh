@@ -281,6 +281,13 @@ export PROCMAILRC=~/.procmailrc
 export PATRC=~/.config/patrc
 
 # --------------------------------------------------------------------------
+# Backup server.
+# --------------------------------------------------------------------------
+if [ -d /mnt/secondary ]; then
+    export BUP_DIR=/mnt/secondary/
+fi
+
+# --------------------------------------------------------------------------
 # Development environment.
 # --------------------------------------------------------------------------
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig
