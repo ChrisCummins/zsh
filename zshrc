@@ -308,6 +308,7 @@ test -n "$ENV_NAME" && {
 
 # The list of directories to add to the path. Directories are added sequentially
 # from first to last. A directory is only added if it exists.
+setopt nullglob
 path_dirs=( \
     ~/bin \
     ~/.local/bin \
@@ -326,6 +327,7 @@ path_dirs=( \
     /usr/local/games \
     /usr/games \
     )
+unsetopt nullglob
 
 # Build path from directory list
 unset PATH
