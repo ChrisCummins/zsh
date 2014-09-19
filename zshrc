@@ -315,6 +315,7 @@ path_dirs=( \
     ~/.cabal/bin \
     ~/.rvm/bin \
     ~/android-sdks/platform-tools \
+    ~/.gem/*/*/bin \
     /usr/lib/ccache \
     /usr/lib/postgresql/*/bin \
     /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin \
