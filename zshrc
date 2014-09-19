@@ -325,6 +325,8 @@ path_dirs=( \
     /opt/bin \
     /bin \
     /usr/bin \
+    /usr/bin/core_perl \
+    /usr/bin/vendor_perl \
     /usr/local/games \
     /usr/games \
     )
