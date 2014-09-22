@@ -222,8 +222,14 @@ alias ll='ls -lh'
 # The Church of Emacs.
 alias ew='emacs >/dev/null 2>&1 &'
 alias enw='exec emacs -nw'
-alias et='emacsclient -t'
-alias ec='emacsclient -c'
+
+et() {
+    emacsclient -t $@ &
+}
+
+ec() {
+    emacsclient -c $@ &
+}
 
 # Directory stack navigation.
 alias pu='pushd >/dev/null'
