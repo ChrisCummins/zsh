@@ -241,6 +241,22 @@ alias pingg='ping -c 3 www.google.com'
 
 
 # --------------------------------------------------------------------------
+# Distro-specific configuration.
+# --------------------------------------------------------------------------
+
+#
+# Arch Linux:
+#
+if [ -f /bin/pacman ]; then
+    alias pS='sudo pacman -S'
+    alias pSs='pacman -Ss'
+fi
+
+if [ -f /bin/yaourt ]; then
+    alias y='yaourt'
+fi
+
+# --------------------------------------------------------------------------
 # Shell environment.
 # --------------------------------------------------------------------------
 export ZSHRC="$HOME/.zshrc"
