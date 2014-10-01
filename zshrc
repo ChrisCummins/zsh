@@ -250,6 +250,7 @@ alias pingg='ping -c 3 www.google.com'
 if [ -f /bin/pacman ]; then
     alias pS='sudo pacman -S'
     alias pSs='pacman -Ss'
+    alias pSyu='sudo pacman -Syu'
 fi
 
 if [ -f /bin/yaourt ]; then
