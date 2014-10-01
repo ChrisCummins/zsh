@@ -239,6 +239,12 @@ alias st='dirs -v'
 # Ping test.
 alias pingg='ping -c 3 www.google.com'
 
+# cec-sync aliases
+if [ -x ~/.local/bin/cec-sync ]; then
+    alias go-home='cec-sync push'
+    alias start-day='cec-sync pull'
+fi
+
 
 # --------------------------------------------------------------------------
 # Distro-specific configuration.
