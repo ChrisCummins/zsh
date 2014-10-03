@@ -528,6 +528,14 @@ xo() {
 
 setopt nullglob
 
+# Load bash profiles from /etc/profile.d
+if test -d /etc/profile.d/; then
+    for profile in /etc/profile.d/*.sh; do
+        test -r "$profile" && . "$profile"
+    done
+    unset profile
+fi
+
 # Custom zsh scripts that are placed in the local/ directory will automatically
 # be sourced at launch.
 if test -d $ZSH_ROOT/local; then
