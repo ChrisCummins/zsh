@@ -523,15 +523,21 @@ xo() {
 }
 
 # --------------------------------------------------------------------------
-# Local files.
+# External files.
 # --------------------------------------------------------------------------
+
+setopt nullglob
 
 # Custom zsh scripts that are placed in the local/ directory will automatically
 # be sourced at launch.
-for f in `find "$ZSH_ROOT/local/" -name '*.zsh' 2>/dev/null`; do
-    source "$f"
-done
+if test -d $ZSH_ROOT/local; then
+    for script in $ZSH_ROOT/local/*.zsh; do
+        test -r "$script" && . "$script"
+    done
+    unset script
+fi
 
+unsetopt nullglob
 
 # Uncomment the following lines to disable error correction
 # setopt nocorrect
