@@ -5,23 +5,27 @@ ZSH_ROOT=$HOME/.local/src/zsh
 
 # Path to your oh-my-zsh configuration.
 ZSH=$ZSH_ROOT/oh-my-zsh
+ZSHRC="$HOME/.zshrc"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Optionally, if you set this to "random", it'll load a random theme
+# each time that oh-my-zsh is loaded.
 ZSH_THEME="cec"
 
-# Set to this to use case-sensitive completion
+# Set to this to use case-sensitive completion:
 CASE_SENSITIVE="true"
 
-# Comment this out to disable weekly auto-update checks
+# Uncomment following line if you want to disable weekly auto-update
+# checks.
 DISABLE_AUTO_UPDATE="true"
 
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# Uncomment following line if you want to disable autosetting terminal
+# title.
+#DISABLE_AUTO_TITLE="true"
 
-# Uncomment following line if you want red dots to be displayed while waiting for completion
+# Uncomment following line if you want red dots to be displayed while
+# waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
 autoload zsh/sched
@@ -170,7 +174,96 @@ bindkey -M isearch . self-insert
 source $ZSH/oh-my-zsh.sh
 
 # --------------------------------------------------------------------------
-# Command modifiers.
+# Shell environment.
+# --------------------------------------------------------------------------
+EMACSRC="$HOME/.emacs.d/personal/init.el"
+
+HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
+HISTSIZE=25000
+HISTFILE=~/.zsh_history
+SAVEHIST=10000
+TERM=xterm-256color
+
+# Say how long a command took, if it took more than 30 seconds.
+REPORTTIME=30
+
+LOGCHECK=60
+
+# Pagers and editors.
+VIEW=/usr/bin/elinks
+PAGER="less"
+LESS="--ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm \
+             --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
+if [[ -x $(which lesspipe.sh) ]]; then
+    LESSOPEN="| lesspipe.sh %s"
+fi
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+EDITOR='vim'
+ALTERNATE_EDITOR=''
+USE_EDITOR=$EDITOR
+VISUAL=$EDITOR
+
+# Mail.
+[ -d ~/mail ] && MAILDIR=~/mail/
+[ -f ~/.muttrc ] && MUTTRC=~/.muttrc
+[ -f ~/.procmailrc ] && PROCMAILRC=~/.procmailrc
+[ -f ~/.partrc ] && PATRC=~/.config/patrc
+
+# Development environment.
+PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig
+LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+[ -f ~/.config/jhbuildrc ] && JHBUILDRC=~/.config/jhbuildrc
+[ -f ~/.config/weston.ini ] && WESTON_INI=~/.config/weston.ini
+USE_CCACHE=1
+NODE_PATH=/usr/local/lib/node_modules
+
+
+# --------------------------------------------------------------------------
+# Path.
+# --------------------------------------------------------------------------
+
+# The list of directories to add to the path. Directories are added sequentially
+# from first to last. A directory is only added if it exists.
+setopt nullglob
+path_dirs=( \
+    ~/bin \
+    ~/.local/bin \
+    ~/.cabal/bin \
+    ~/.rvm/bin \
+    ~/android-sdks/platform-tools \
+    ~/.gem/*/*/bin \
+    /usr/lib/ccache \
+    /usr/lib/postgresql/*/bin \
+    /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin \
+    /usr/local/bin \
+    /usr/contrib/bin \
+    /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64 \
+    /opt/bin \
+    /bin \
+    /usr/bin \
+    /usr/bin/core_perl \
+    /usr/bin/vendor_perl \
+    /usr/local/games \
+    /usr/games \
+    )
+unsetopt nullglob
+
+# Build path from directory list
+unset PATH
+for dir in "${path_dirs[@]}"
+do
+    if [ -d $dir ]; then
+        PATH=$PATH:$dir
+    fi
+done
+PATH=${PATH:1} # Strip leading ':' character
+unset path_dirs
+unset dir
+
+
+# --------------------------------------------------------------------------
+# Aliases.
 # --------------------------------------------------------------------------
 
 # Don't kill forked jobs on shell exit.
@@ -207,29 +300,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias vdir='vdir --color=auto'
 fi
 
-# "git + hub = github" wrapper.
-[ -x /usr/local/bin/hub ] && alias git='hub'
-
-# --------------------------------------------------------------------------
-# New Commands.
-# --------------------------------------------------------------------------
-
 # Shortcuts.
 alias l='less'
 alias g='grep'
 alias ll='ls -lh'
-
-# The Church of Emacs.
-alias ew='emacs >/dev/null 2>&1 &'
-alias enw='exec emacs -nw'
-
-et() {
-    emacsclient -t $@ &
-}
-
-ec() {
-    emacsclient -c $@ &
-}
 
 # Directory stack navigation.
 alias pu='pushd >/dev/null'
@@ -239,7 +313,37 @@ alias st='dirs -v'
 # Ping test.
 alias pingg='ping -c 3 www.google.com'
 
-# cec-sync aliases
+
+# --------------------------------------------------------------------------
+# Application-specific configuration.
+# --------------------------------------------------------------------------
+
+# The Church of Emacs.
+#
+# Open an Emacs client if there is a server, else use vim.
+emacs_else_vim() {
+    if [ -e /tmp/emacs$UID/server ]; then
+        emacsclient -t $@
+    else
+        vim $@
+    fi
+}
+alias e=emacs_else_vim
+alias ew='emacs >/dev/null 2>&1 &'
+alias enw='exec emacs -nw'
+et() {
+    emacsclient -t $@ &
+}
+ec() {
+    emacsclient -c $@ &
+}
+
+
+# "git + hub = github" wrapper.
+[ -x /usr/local/bin/hub ] && alias git='hub'
+
+
+# cec-sync.
 if [ -x ~/.local/bin/cec-sync ]; then
     alias go-home='cec-sync push'
     alias start-day='cec-sync pull'
@@ -250,129 +354,15 @@ fi
 # Distro-specific configuration.
 # --------------------------------------------------------------------------
 
-#
-# Arch Linux:
-#
-if [ -f /bin/pacman ]; then
+# Arch Linux.
+if [ -x /bin/pacman ]; then
     alias pS='sudo pacman -S'
     alias pSs='pacman -Ss'
     alias pSyu='sudo pacman -Syu'
 fi
 
-if [ -f /bin/yaourt ]; then
-    alias y='yaourt'
-fi
+[ -x /bin/yaourt ] && alias y='yaourt'
 
-# --------------------------------------------------------------------------
-# Shell environment.
-# --------------------------------------------------------------------------
-export ZSHRC="$HOME/.zshrc"
-
-export EMACSRC="$HOME/.emacs.d/personal/init.el"
-
-export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
-export HISTSIZE=25000
-export HISTFILE=~/.zsh_history
-export SAVEHIST=10000
-
-# Say how long a command took, if it took more than 30 seconds.
-export REPORTTIME=30
-
-export LOGCHECK=60
-
-# --------------------------------------------------------------------------
-# Pagers and editors.
-# --------------------------------------------------------------------------
-
-export VIEW=/usr/bin/elinks
-export PAGER="less"
-export LESS="--ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm \
-             --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
-if [[ -x $(which lesspipe.sh) ]]; then
-    LESSOPEN="| lesspipe.sh %s"
-    export LESSOPEN
-fi
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-export EDITOR='vim'
-export ALTERNATE_EDITOR=''
-export USE_EDITOR=$EDITOR
-export VISUAL=$EDITOR
-
-export TERM=xterm-256color
-
-# --------------------------------------------------------------------------
-# Mail.
-# --------------------------------------------------------------------------
-export MAILDIR=~/mail/
-export MUTTRC=~/.muttrc
-export PROCMAILRC=~/.procmailrc
-export PATRC=~/.config/patrc
-
-# --------------------------------------------------------------------------
-# Backup server.
-# --------------------------------------------------------------------------
-if [ -d /mnt/secondary ]; then
-    export BUP_DIR=/mnt/secondary/
-fi
-
-# --------------------------------------------------------------------------
-# Development environment.
-# --------------------------------------------------------------------------
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig
-export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
-export JHBUILDRC=~/.config/jhbuildrc
-export WESTON_INI=~/.config/weston.ini
-export USE_CCACHE=1
-export NODE_PATH=/usr/local/lib/node_modules
-
-# We can set ENV_NAME to name an environment, e.g. "dev".
-test -n "$ENV_NAME" && {
-    export PS1="%{$fg[green]%}[$ENV_NAME]%{$reset_color%} $PS1"
-}
-
-# --------------------------------------------------------------------------
-# Path.
-# --------------------------------------------------------------------------
-
-# The list of directories to add to the path. Directories are added sequentially
-# from first to last. A directory is only added if it exists.
-setopt nullglob
-path_dirs=( \
-    ~/bin \
-    ~/.local/bin \
-    ~/.cabal/bin \
-    ~/.rvm/bin \
-    ~/android-sdks/platform-tools \
-    ~/.gem/*/*/bin \
-    /usr/lib/ccache \
-    /usr/lib/postgresql/*/bin \
-    /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin \
-    /usr/local/bin \
-    /usr/contrib/bin \
-    /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64 \
-    /opt/bin \
-    /bin \
-    /usr/bin \
-    /usr/bin/core_perl \
-    /usr/bin/vendor_perl \
-    /usr/local/games \
-    /usr/games \
-    )
-unsetopt nullglob
-
-# Build path from directory list
-unset PATH
-for d in "${path_dirs[@]}"
-do
-    if [ -d $d ]; then
-        PATH=$PATH:$d
-    fi
-done
-
-# Strip the leading ':' from the path
-export PATH=${PATH:1}
-unset path_dirs
 
 # --------------------------------------------------------------------------
 # Shell functions.
@@ -429,22 +419,10 @@ mkmd() {
 mkudir() {
     test -n "$1" || { echo "Usage: mkudir <directory>" >&2; return 2 }
 
-    local user=`whoami`
     sudo mkdir -v $@
-    sudo chown $user $@
-    sudo chgrp $user $@
+    sudo chown $USER $@
+    sudo chgrp $USER $@
 }
-
-# Open an Emacs client if there is a server, else use vim.
-emacs_else_vim() {
-    if [ -e /tmp/emacs$UID/server ]; then
-        emacsclient -t $@
-    else
-        vim $@
-    fi
-}
-
-alias e=emacs_else_vim
 
 # Search for process by name.
 pgrep() {
@@ -466,6 +444,7 @@ reshell() {
     test -f $conf || { echo "File does not exist: '$conf'" >&2; return 1; }
 
     source $conf
+    reset
 }
 
 # For convenient file searching.
@@ -507,10 +486,9 @@ cry() {
 # TODO list tracking.
 todo() {
     local dir="."
-
     test -n "$1" && dir="$1"
 
-    for f in $(sudo find "$dir" -type f | grep -v .git); do
+    for f in $(find "$dir" -type f 2>/dev/null | grep -v .git); do
         grep -iHn 'TODO\|FIXME' $f 2>/dev/null
     done
 
@@ -546,9 +524,3 @@ if test -d $ZSH_ROOT/local; then
 fi
 
 unsetopt nullglob
-
-# Uncomment the following lines to disable error correction
-# setopt nocorrect
-# setopt nocorrectall
-# unsetopt correct
-# unsetopt correctall
