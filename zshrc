@@ -1,11 +1,11 @@
 # -*- mode: sh -*-
 
 # Base directory for zshell.
-ZSH_ROOT=$HOME/.local/src/zsh
+export ZSH_ROOT=$HOME/.local/src/zsh
 
 # Path to your oh-my-zsh configuration.
-ZSH=$ZSH_ROOT/oh-my-zsh
-ZSHRC="$HOME/.zshrc"
+export ZSH=$ZSH_ROOT/oh-my-zsh
+export ZSHRC="$HOME/.zshrc"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -176,47 +176,47 @@ source $ZSH/oh-my-zsh.sh
 # --------------------------------------------------------------------------
 # Shell environment.
 # --------------------------------------------------------------------------
-EMACSRC="$HOME/.emacs.d/personal/init.el"
+export EMACSRC="$HOME/.emacs.d/personal/init.el"
 
-HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
-HISTSIZE=25000
-HISTFILE=~/.zsh_history
-SAVEHIST=10000
-TERM=xterm-256color
+export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
+export HISTSIZE=25000
+export HISTFILE=~/.zsh_history
+export SAVEHIST=10000
+export TERM=xterm-256color
 
 # Say how long a command took, if it took more than 30 seconds.
-REPORTTIME=30
+export REPORTTIME=30
 
-LOGCHECK=60
+export LOGCHECK=60
 
 # Pagers and editors.
-VIEW=/usr/bin/elinks
-PAGER="less"
-LESS="--ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm \
+export VIEW=/usr/bin/elinks
+export PAGER="less"
+export LESS="--ignore-case --LONG-PROMPT --QUIET --chop-long-lines -Sm \
              --RAW-CONTROL-CHARS --quit-if-one-screen --no-init"
 if [[ -x $(which lesspipe.sh) ]]; then
-    LESSOPEN="| lesspipe.sh %s"
+    export LESSOPEN="| lesspipe.sh %s"
 fi
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-EDITOR='vim'
-ALTERNATE_EDITOR=''
-USE_EDITOR=$EDITOR
-VISUAL=$EDITOR
+export EDITOR='vim'
+export ALTERNATE_EDITOR=''
+export USE_EDITOR=$EDITOR
+export VISUAL=$EDITOR
 
 # Mail.
-[ -d ~/mail ] && MAILDIR=~/mail/
-[ -f ~/.muttrc ] && MUTTRC=~/.muttrc
-[ -f ~/.procmailrc ] && PROCMAILRC=~/.procmailrc
-[ -f ~/.partrc ] && PATRC=~/.config/patrc
+[ -d ~/mail ] && export MAILDIR=~/mail/
+[ -f ~/.muttrc ] && export MUTTRC=~/.muttrc
+[ -f ~/.procmailrc ] && export PROCMAILRC=~/.procmailrc
+[ -f ~/.partrc ] && export PATRC=~/.config/patrc
 
 # Development environment.
-PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig
-LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
-[ -f ~/.config/jhbuildrc ] && JHBUILDRC=~/.config/jhbuildrc
-[ -f ~/.config/weston.ini ] && WESTON_INI=~/.config/weston.ini
-USE_CCACHE=1
-NODE_PATH=/usr/local/lib/node_modules
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+[ -f ~/.config/jhbuildrc ] && export JHBUILDRC=~/.config/jhbuildrc
+[ -f ~/.config/weston.ini ] && export WESTON_INI=~/.config/weston.ini
+export USE_CCACHE=1
+export NODE_PATH=/usr/local/lib/node_modules
 
 
 # --------------------------------------------------------------------------
@@ -257,7 +257,7 @@ do
         PATH=$PATH:$dir
     fi
 done
-PATH=${PATH:1} # Strip leading ':' character
+export PATH=${PATH:1} # Strip leading ':' character
 unset path_dirs
 unset dir
 
