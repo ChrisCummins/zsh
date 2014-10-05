@@ -11,14 +11,14 @@ export ZSHRC="$HOME/.zshrc"
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme
 # each time that oh-my-zsh is loaded.
-ZSH_THEME="cec"
+export ZSH_THEME="cec"
 
 # Set to this to use case-sensitive completion:
-CASE_SENSITIVE="true"
+export CASE_SENSITIVE="true"
 
 # Uncomment following line if you want to disable weekly auto-update
 # checks.
-DISABLE_AUTO_UPDATE="true"
+export DISABLE_AUTO_UPDATE="true"
 
 # Uncomment following line if you want to disable autosetting terminal
 # title.
@@ -26,7 +26,7 @@ DISABLE_AUTO_UPDATE="true"
 
 # Uncomment following line if you want red dots to be displayed while
 # waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+export COMPLETION_WAITING_DOTS="true"
 
 autoload zsh/sched
 
@@ -101,12 +101,12 @@ zle -N insert-files
 bindkey '^Xf' insert-files
 
 # Alt+S inserts sudo at the start of a line
-insert_sudo () { zle beginning-of-line; zle -U "sudo " }
+insert_sudo () { zle beginning-of-line; zle -U "sudo "; }
 zle -N insert-sudo insert_sudo
 bindkey "^[s" insert-sudo
 
-# Alt+t inserts time at the start of a line
-insert_time () { zle beginning-of-line; zle -U "time " }
+# Alt+T inserts time at the start of a line
+insert_time () { zle beginning-of-line; zle -U "time "; }
 zle -N insert-time insert_time
 bindkey "^[t" insert-time
 
@@ -171,7 +171,7 @@ zle -N rationalise-dot
 bindkey . rationalise-dot
 bindkey -M isearch . self-insert
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # --------------------------------------------------------------------------
 # Shell environment.
@@ -322,20 +322,20 @@ alias pingg='ping -c 3 www.google.com'
 #
 # Open an Emacs client if there is a server, else use vim.
 emacs_else_vim() {
-    if [ -e /tmp/emacs$UID/server ]; then
-        emacsclient -t $@
+    if [ -e "/tmp/emacs$UID/server" ]; then
+        emacsclient -t "$@"
     else
-        vim $@
+        vim "$@"
     fi
 }
 alias e=emacs_else_vim
 alias ew='emacs >/dev/null 2>&1 &'
 alias enw='exec emacs -nw'
 et() {
-    emacsclient -t $@ &
+    emacsclient -t "$@" &
 }
 ec() {
-    emacsclient -c $@ &
+    emacsclient -c "$@" &
 }
 
 
@@ -372,21 +372,21 @@ fi
 calc() {
     test -n "$1" || { echo "Usage: calc <expression>" >&2; return 1; }
 
-    echo $@ | bc -l
+    echo "$@" | bc -l
 }
 
 # ROT-13 capable cat.
 cat13() {
-    cat $@ | tr '[a-m][n-z][A-M][N-Z]' '[n-z][a-m][N-Z][A-M]'
+    tr '[a-m][n-z][A-M][N-Z]' '[n-z][a-m][N-Z][A-M]' < "$@"
 }
 
 # Plaintext cat for markdown files.
 catmd() {
     test -n "$1" || { echo "Usage: catmd <files>" >&2; return 1; }
 
-    for arg in $@
+    for arg in "$@"
     do
-        if [[ ${arg%.md} == $arg ]]; then
+        if [[ ${arg%.md} == "$arg" ]]; then
             echo "'$arg' does not end in .md extension" >&2
         else
             local html=${arg%.md}.html
@@ -399,36 +399,29 @@ catmd() {
 
 # CLI for google define.
 define() {
-    test -n "$1" || { echo "Usage: define <term>" >&2; return 1 }
+    test -n "$1" || { echo "Usage: define <term>" >&2; return 1; }
 
     wget -qO- -U \
         "Mozilla/6.0 (Macintosh; I; Intel Mac OS X 11_7_9; de-LI; rv:1.9b4) Gecko/2012010317 Firefox/10.0a4" \
-        http://www.google.co.uk/search\?q\=$@\&tbs\=dfn:1 \
+        http://www.google.co.uk/search\?q\="$@"\&tbs\=dfn:1 \
         | grep --perl-regexp --only-matching '(?<=<li style="list-style:none">)[^<]+' \
         | nl | perl -MHTML::Entities -pe 'decode_entities($_)'
 }
 
 # Make a Maildir.
 mkmd() {
-    test -n "$1" || { echo "Usage: mkmd <name>" >&2; return 2 }
+    test -n "$1" || { echo "Usage: mkmd <name>" >&2; return 2; }
 
-    mkdir -pv $MAILDIR/.$1/cur $MAILDIR/.$1/new $MAILDIR/.$1/tmp
+    mkdir -pv "$MAILDIR/.$1/cur" "$MAILDIR/.$1/new" "$MAILDIR/.$1/tmp"
 }
 
 # Make a directory with that belongs to user.
 mkudir() {
-    test -n "$1" || { echo "Usage: mkudir <directory>" >&2; return 2 }
+    test -n "$1" || { echo "Usage: mkudir <directory>" >&2; return 2; }
 
-    sudo mkdir -v $@
-    sudo chown $USER $@
-    sudo chgrp $USER $@
-}
-
-# Search for process by name.
-pgrep() {
-    test -n "$1" || { echo "Usage: pgrep <name>" >&2; return 1; }
-
-    ps aux | grep $1 | grep -v grep
+    sudo mkdir -v "$@"
+    sudo chown "$USER" "$@"
+    sudo chgrp "$USER" "$@"
 }
 
 # Source configuration shells again.
@@ -450,33 +443,40 @@ reshell() {
 # For convenient file searching.
 search() {
     test -n "$1" || { echo "Usage: search [dir] <pattern>" >&2; return 1; }
-    test -n "$2" && { local d="$1"; local q="$2"; } || { local d=. local q="$1" }
-    test -d "$d" || { echo "Directory '$d' does not exist!"; return 1 }
+    test -n "$2" && { local d="$1"; local q="$2"; } || { local d=. local q="$1"; }
+    test -d "$d" || { echo "Directory '$d' does not exist!"; return 1; }
 
-    sudo find $d -iname '*'$q'*' 2>/dev/null | grep -v '^'$d'$'; return 0
+    sudo find "$d" -iname '*'"$q"'*' 2>/dev/null | grep -v '^'"$d"'$'
+    return 0
 }
 
 # CLI for wikipedia.
 wiki() {
     test -n "$1" || { echo "Usage: wiki <term>" >&2; return 1; }
 
-    dig +short txt $(echo $@ | sed 's/\ /_/').wp.dg.cx \
+    dig +short txt "$(echo "$@" | sed 's/\ /_/').wp.dg.cx" \
         | sed -e 's/" "//g' -e 's/^"//g' -e 's/"$//g' -e 's/ http:/\n\nhttp:/' \
         | tr -d '\\' \
-        | fmt -w `tput cols`
+        | fmt -w "$(tput cols)"
 }
 
 # Super simple and super strong encryption.
 cry() {
     test -n "$1" || { echo "Usage: cry <file ...>" >&2; return 1; }
 
-    for f in $@; do
+    for f in "$@"; do
         if [[ ${f##*.} == "cry" ]]; then
             scrypt dec "$f" > "${f%.cry}"
-            if (( $? )); then { echo "Decryption failed on '$f'" >&2; return 1 }; fi
+            if (( $? )); then
+                echo "Decryption failed on '$f'" >&2
+                return 1
+            fi
         else
             scrypt enc "$f" > "$f".cry
-            if (( $? )); then { echo "Encryption failed on '$f'" >&2; return 1 }; fi
+            if (( $? )); then
+                echo "Encryption failed on '$f'" >&2
+                return 1
+            fi
         fi
 
         rm -f "$f"
@@ -489,7 +489,7 @@ todo() {
     test -n "$1" && dir="$1"
 
     for f in $(find "$dir" -type f 2>/dev/null | grep -v .git); do
-        grep -iHn 'TODO\|FIXME' $f 2>/dev/null
+        grep -iHn 'TODO\|FIXME' "$f" 2>/dev/null
     done
 
     return 0
@@ -497,7 +497,7 @@ todo() {
 
 # Easy-open.
 xo() {
-    xdg-open $@ &>/dev/null
+    xdg-open "$@" &>/dev/null
 }
 
 # --------------------------------------------------------------------------
@@ -516,7 +516,7 @@ fi
 
 # Custom zsh scripts that are placed in the local/ directory will automatically
 # be sourced at launch.
-if test -d $ZSH_ROOT/local; then
+if test -d "$ZSH_ROOT/local"; then
     for script in $ZSH_ROOT/local/*.zsh; do
         test -r "$script" && . "$script"
     done
