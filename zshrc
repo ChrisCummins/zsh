@@ -301,9 +301,23 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Shortcuts.
-alias l='less'
+alias c='cat'
+alias E='exit'
+alias f='file'
+alias ff='find'
 alias g='grep'
+alias l='less'
 alias ll='ls -lh'
+alias m='make'
+alias M='mkdir'
+alias mm='./autogen.sh && ./configure'
+alias p='python'
+alias q='which'
+alias R='rmdir'
+alias s='echo'
+alias t='touch'
+alias v='valgrind'
+alias wg='wget'
 
 # Directory stack navigation.
 alias pu='pushd >/dev/null'
