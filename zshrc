@@ -329,6 +329,8 @@ alias st='dirs -v'
 # Ping test.
 alias pingg='ping -c 3 www.google.com'
 
+# Print a table of all defined aliases.
+alias alias_table="alias | sed 's/=/\t/' | sed -r 's/'"'"(.*)"'"'/\1/' | column -t -s$'\t'"
 
 # --------------------------------------------------------------------------
 # Application-specific configuration.
