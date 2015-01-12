@@ -211,21 +211,53 @@ export VISUAL=$EDITOR
 [ -f ~/.partrc ] && export PATRC=~/.config/patrc
 
 # Development environment.
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/lib/pkgconfig
-export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
 [ -f ~/.config/jhbuildrc ] && export JHBUILDRC=~/.config/jhbuildrc
 [ -f ~/.config/weston.ini ] && export WESTON_INI=~/.config/weston.ini
 export USE_CCACHE=1
+
+
+# --------------------------------------------------------------------------
+# Paths.
+# --------------------------------------------------------------------------
+
+# Accepts an array of directories and returns a colon separated path
+# of all of the directories that exist, in order.  Example usage:
+#
+#    dirs=("/usr/local/bin" /usr/bin "/not a real path")
+#    unset FOO
+#    FOO=$(build_path "${dirs[@]}")
+#    echo $FOO
+#    # Outputs: /usr/local/bin:/usr/bin
+build_path() {
+    local _dir=""
+    local _path=""
+
+    for _dir in "$@"
+    do
+        if [ -d $_dir ]; then
+            _path=$_path:$_dir
+        fi
+    done
+
+    _path=${_path:1}
+    echo $_path
+}
+
+setopt nullglob # Globs which don't match anything expand to nothing.
+pkg_config_path_dirs=( \
+    /usr/local/lib/pkgconfig \
+    /usr/lib/pkgconfig \
+)
+export PKG_CONFIG_PATH=$(build_path "${pkg_config_path_dirs[@]}")
+
+ld_library_path_dirs=( \
+    /usr/local/lib \
+    /usr/lib \
+)
+export LD_LIBRARY_PATH=$(build_path "${ld_library_path_dirs[@]}")
+
 export NODE_PATH=/usr/local/lib/node_modules
 
-
-# --------------------------------------------------------------------------
-# Path.
-# --------------------------------------------------------------------------
-
-# The list of directories to add to the path. Directories are added sequentially
-# from first to last. A directory is only added if it exists.
-setopt nullglob
 path_dirs=( \
     ~/bin \
     ~/.local/bin \
@@ -246,21 +278,10 @@ path_dirs=( \
     /usr/bin/vendor_perl \
     /usr/local/games \
     /usr/games \
-    )
+)
+export PATH=$(build_path "${path_dirs[@]}")
+
 unsetopt nullglob
-
-# Build path from directory list
-unset PATH
-for dir in "${path_dirs[@]}"
-do
-    if [ -d $dir ]; then
-        PATH=$PATH:$dir
-    fi
-done
-export PATH=${PATH:1} # Strip leading ':' character
-unset path_dirs
-unset dir
-
 
 # --------------------------------------------------------------------------
 # Aliases.
