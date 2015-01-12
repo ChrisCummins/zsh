@@ -251,6 +251,7 @@ pkg_config_path_dirs=( \
 export PKG_CONFIG_PATH=$(build_path "${pkg_config_path_dirs[@]}")
 
 ld_library_path_dirs=( \
+    /opt/intel/opencl-sdk/lib64 \
     /usr/local/lib \
     /usr/lib \
 )
