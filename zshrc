@@ -254,6 +254,9 @@ ld_library_path_dirs=( \
     /opt/intel/opencl-sdk/lib64 \
     /usr/local/lib \
     /usr/lib \
+    ~/src/msc-thesis/skelcl/build/src/ \
+    ~/src/msc-thesis/skelcl/build/libraries/pvsutil/src/ \
+    ~/src/msc-thesis/skelcl/build/libraries/stooling/src/ \
 )
 export LD_LIBRARY_PATH=$(build_path "${ld_library_path_dirs[@]}")
 
