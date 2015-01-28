@@ -257,6 +257,7 @@ ld_library_path_dirs=( \
     ~/src/msc-thesis/skelcl/build/src/ \
     ~/src/msc-thesis/skelcl/build/libraries/pvsutil/src/ \
     ~/src/msc-thesis/skelcl/build/libraries/stooling/src/ \
+    ~/src/msc-thesis/skelcl/libraries/llvm/install/lib/ \
 )
 export LD_LIBRARY_PATH=$(build_path "${ld_library_path_dirs[@]}")
 
