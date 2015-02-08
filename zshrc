@@ -494,6 +494,21 @@ search() {
     return 0
 }
 
+# Silence the output of a command, unless it fails. Example:
+#
+#     $ silent my command
+silent() {
+    local tmpfile="$(mktemp)"
+
+    $@ 2>&1 > "$tmpfile" || {
+        ret=$?
+        cat "$tmpfile"
+        rm "$tmpfile"
+        exit $ret
+    }
+    rm "$tmpfile"
+}
+
 # Buffer standard input to a file. Useful for redirecting output of a
 # pipe chain to the same input file. Example:
 #
