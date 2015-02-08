@@ -494,6 +494,24 @@ search() {
     return 0
 }
 
+# Buffer standard input to a file. Useful for redirecting output of a
+# pipe chain to the same input file. Example:
+#
+#     $ grep -v 'a' foo | sponge foo
+sponge() {
+    if [ -z "$1" ]; then
+        echo "$(basename $0):$LINENO sponge():  No file name given!"
+        exit 1
+    fi
+
+    # Create a temporary file.
+    local tmpfile="$(mktemp)"
+    # Redirect all stdin in to the temporary file.
+    cat > "$tmpfile"
+    # Replace the destintation file with the temporary file.
+    mv "$tmpfile" "$1"
+}
+
 # CLI for wikipedia.
 wiki() {
     test -n "$1" || { echo "Usage: wiki <term>" >&2; return 1; }
