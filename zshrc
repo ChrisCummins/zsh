@@ -270,6 +270,7 @@ path_dirs=( \
     ~/.rvm/bin \
     ~/android-sdks/platform-tools \
     ~/.gem/*/*/bin \
+    ~/.gem/*/ruby/*/bin \
     /usr/lib/ccache \
     /usr/lib/postgresql/*/bin \
     /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin \
