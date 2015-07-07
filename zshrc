@@ -601,4 +601,11 @@ if test -d "$ZSH_ROOT/local"; then
     unset script
 fi
 
+# If rbenv is installed, inject shims into PATH. See:
+#
+#    https://github.com/sstephenson/rbenv#how-it-works
+if [[ -x $(which rbenv) ]]; then
+    eval "$(rbenv init -)"
+fi
+
 unsetopt nullglob
