@@ -315,6 +315,10 @@ if [[ ${EUID} != 0 ]]; then
     alias vgdisplay='sudo vgdisplay'
 fi
 
+# Fix terminal
+alias terminal='xfe4-terminal'
+alias gnome-terminal='xfe4-terminal'
+
 # Enable pretty colors.
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" \
