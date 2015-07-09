@@ -316,8 +316,8 @@ if [[ ${EUID} != 0 ]]; then
 fi
 
 # Fix terminal
-alias terminal='xfe4-terminal'
-alias gnome-terminal='xfe4-terminal'
+alias terminal='xfce4-terminal'
+alias gnome-terminal='xfce4-terminal'
 
 # Enable pretty colors.
 if [ -x /usr/bin/dircolors ]; then
