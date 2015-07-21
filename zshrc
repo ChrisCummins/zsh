@@ -278,6 +278,8 @@ path_dirs=( \
     /usr/contrib/bin \
     /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64 \
     /opt/bin \
+    /opt/local/bin/ \
+    /opt/local/sbin/ \
     /bin \
     /usr/bin \
     /usr/bin/core_perl \
