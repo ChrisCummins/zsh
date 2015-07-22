@@ -287,6 +287,7 @@ path_dirs=( \
     /usr/local/games \
     /usr/games \
     /usr/sbin/ \
+    /sbin \
 )
 export PATH=$(build_path "${path_dirs[@]}")
 
