@@ -284,9 +284,10 @@ path_dirs=( \
     /usr/bin \
     /usr/bin/core_perl \
     /usr/bin/vendor_perl \
-    /usr/local/games \
     /usr/games \
+    /usr/local/games \
     /usr/sbin/ \
+    /usr/texbin \
     /sbin \
 )
 export PATH=$(build_path "${path_dirs[@]}")
