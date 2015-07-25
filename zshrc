@@ -583,9 +583,13 @@ todo() {
 }
 
 # Easy-open.
-xo() {
-    xdg-open "$@" &>/dev/null
-}
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    alias xo='open'
+else
+    xo() {
+        xdg-open "$@" &>/dev/null
+    }
+fi
 
 # --------------------------------------------------------------------------
 # External files.
