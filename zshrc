@@ -285,6 +285,7 @@ path_dirs=( \
     /usr/bin/core_perl \
     /usr/bin/vendor_perl \
     /usr/games \
+    /usr/local/mysql/bin \
     /usr/local/games \
     /usr/sbin/ \
     /usr/texbin \
