@@ -271,6 +271,7 @@ path_dirs=( \
     ~/android-sdks/platform-tools \
     ~/.gem/*/*/bin \
     ~/.gem/*/ruby/*/bin \
+    $(brew --prefix coreutils 2>/dev/null)/libexec/gnubin \
     /usr/lib/ccache \
     /usr/lib/postgresql/*/bin \
     /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin \
