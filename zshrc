@@ -271,6 +271,7 @@ path_dirs=( \
     ~/android-sdks/platform-tools \
     ~/.gem/*/*/bin \
     ~/.gem/*/ruby/*/bin \
+    /Applications/Emacs.app/Contents/MacOS/bin/ \
     $(brew --prefix coreutils 2>/dev/null)/libexec/gnubin \
     /usr/lib/ccache \
     /usr/lib/postgresql/*/bin \
