@@ -625,4 +625,9 @@ if [[ -x $(which rbenv) ]]; then
     eval "$(rbenv init -)"
 fi
 
+# If torch is present, activate it.
+if test -f "~/torch/install/bin/torch-activate"; then
+    . ~/torch/install/bin/torch-activate
+fi
+
 unsetopt nullglob
