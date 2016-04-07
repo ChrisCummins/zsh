@@ -421,6 +421,9 @@ fi
 
 [ -x /bin/yaourt ] && alias y='yaourt'
 
+# OpenCL vendor installation.
+[ -d /etc/OpenCL/vendors/ ] && export OPENCL_VENDOR_PATH=/etc/OpenCL/vendors/
+
 
 # --------------------------------------------------------------------------
 # Shell functions.
