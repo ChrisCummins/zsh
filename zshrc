@@ -271,6 +271,7 @@ path_dirs=( \
     ~/android-sdks/platform-tools \
     ~/.gem/*/*/bin \
     ~/.gem/*/ruby/*/bin \
+    ~/torch/install/bin \
     /Applications/Emacs.app/Contents/MacOS/bin \
     /Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin \
     $(brew --prefix coreutils 2>/dev/null)/libexec/gnubin \
