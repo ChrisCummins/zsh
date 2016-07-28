@@ -251,13 +251,11 @@ pkg_config_path_dirs=( \
 export PKG_CONFIG_PATH=$(build_path "${pkg_config_path_dirs[@]}")
 
 ld_library_path_dirs=( \
-    ~/src/msc-thesis/skelcl/build/src/ \
-    ~/src/msc-thesis/skelcl/build/libraries/pvsutil/src/ \
-    ~/src/msc-thesis/skelcl/build/libraries/stooling/src/ \
-    ~/src/msc-thesis/skelcl/libraries/llvm/install/lib/ \
     /opt/intel/opencl-sdk/lib64 \
-    /usr/local/lib \
     /usr/lib \
+    /usr/lib32 \
+    /usr/local/lib \
+    ~/torch/install/lib \
 )
 export LD_LIBRARY_PATH=$(build_path "${ld_library_path_dirs[@]}")
 
