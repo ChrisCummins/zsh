@@ -243,6 +243,8 @@ build_path() {
     echo $_path
 }
 
+export NODE_PATH=/usr/local/lib/node_modules
+
 setopt nullglob # Globs which don't match anything expand to nothing.
 pkg_config_path_dirs=( \
     /usr/local/lib/pkgconfig \
@@ -258,8 +260,6 @@ ld_library_path_dirs=( \
     ~/torch/install/lib \
 )
 export LD_LIBRARY_PATH=$(build_path "${ld_library_path_dirs[@]}")
-
-export NODE_PATH=/usr/local/lib/node_modules
 
 path_dirs=( \
     ~/bin \
