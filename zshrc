@@ -512,6 +512,13 @@ search() {
     return 0
 }
 
+# Launch a webserver in the current dir.
+server() {
+    local port=$1
+
+    open "http://localhost:${1}" && python -m SimpleHTTPServer $port
+}
+
 # Silence the output of a command, unless it fails. Example:
 #
 #     $ silent my command
