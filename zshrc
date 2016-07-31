@@ -276,6 +276,7 @@ path_dirs=( \
     /Applications/Emacs.app/Contents/MacOS/bin \
     /Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin \
     $(brew --prefix coreutils 2>/dev/null)/libexec/gnubin \
+    /usr/local/Cellar/coreutils/8.24/libexec/gnubin/ \
     /usr/lib/ccache \
     /usr/lib/postgresql/*/bin \
     /usr/lib/jvm/java-1.7.0-openjdk-amd64/bin \
