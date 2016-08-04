@@ -332,10 +332,11 @@ alias terminal='xfce4-terminal'
 alias gnome-terminal='xfce4-terminal'
 
 # Enable pretty colors.
-if [ -x /usr/bin/dircolors ]; then
+if $(which dircolors &>/dev/null); then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" \
         || eval "$(dircolors -b)"
 
+    alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias egrep='egrep --color=auto'
     alias fgrep='fgrep --color=auto'
