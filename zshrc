@@ -349,7 +349,6 @@ alias c='cat'
 alias E='exit'
 alias f='file'
 alias ff='find'
-alias g='git'
 alias H='head'
 alias l='less'
 alias ll='ls -lh'
@@ -364,6 +363,14 @@ alias T='tail'
 alias t='touch'
 alias v='vim'
 alias wg='wget'
+
+# Git goodness.
+alias g='git'
+alias gA='git add'
+alias gC='git commit'
+alias gD='git diff'
+alias gL='git log'
+alias gS='git status'
 
 # Directory stack navigation.
 alias pu='pushd >/dev/null'
