@@ -362,7 +362,7 @@ alias R='rmdir'
 alias s='echo'
 alias T='tail'
 alias t='touch'
-alias v='valgrind'
+alias v='vim'
 alias wg='wget'
 
 # Directory stack navigation.
