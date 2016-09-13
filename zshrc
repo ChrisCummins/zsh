@@ -366,6 +366,7 @@ alias gA='git add'
 alias gC='git commit'
 alias gD='git diff'
 alias gL='git log'
+alias gP='git push'
 alias gS='git status'
 
 # Directory stack navigation.
