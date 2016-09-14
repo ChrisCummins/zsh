@@ -313,19 +313,7 @@ alias chgrp='chgrp --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-root'
 
-# Permissions boosters.
-if [[ ${EUID} != 0 ]]; then
-    alias chmod='sudo chmod'
-    alias chown='sudo chown'
-    alias ifconfig='sudo ifconfig'
-    alias mount='sudo mount'
-    alias reboot='sudo reboot'
-    alias shutdown='sudo shutdown'
-    alias umount='sudo umount'
-    alias vgchange='sudo vgchange'
-    alias vgcreate='sudo vgcreate'
-    alias vgdisplay='sudo vgdisplay'
-fi
+alias off='sudo shutdown -h now'
 
 # Enable pretty colors.
 if $(which dircolors &>/dev/null); then
