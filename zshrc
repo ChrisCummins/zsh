@@ -362,6 +362,9 @@ alias pu='pushd >/dev/null'
 alias po='popd  >/dev/null'
 alias st='dirs -v'
 
+# Safe rm wrapper.
+alias trash='rmtrash'
+
 # Ping test.
 alias pingg='ping -c 3 www.google.com'
 
