@@ -375,50 +375,13 @@ alias alias_table="alias | sed 's/=/\t/' | sed -r 's/'"'"(.*)"'"'/\1/' | column 
 # Application-specific configuration.
 # --------------------------------------------------------------------------
 
-# The Church of Emacs.
-#
-# Open an Emacs client if there is a server, else use vim.
-emacs_else_vim() {
-    if [ -e "/tmp/emacs$UID/server" ]; then
-        emacsclient -t "$@"
-    else
-        vim "$@"
-    fi
-}
-alias e=emacs_else_vim
-alias ew='emacs >/dev/null 2>&1 &'
-alias enw='exec emacs -nw'
-et() {
-    emacsclient -t "$@" &
-}
-ec() {
-    emacsclient -c "$@" &
-}
-
-
 # "git + hub = github" wrapper.
 [ -x /usr/local/bin/hub ] && alias git='hub'
-
-
-# cec-sync.
-if [ -x ~/.local/bin/cec-sync ]; then
-    alias go-home='cec-sync push'
-    alias start-day='cec-sync pull'
-fi
 
 
 # --------------------------------------------------------------------------
 # Distro-specific configuration.
 # --------------------------------------------------------------------------
-
-# Arch Linux.
-if [ -x /bin/pacman ]; then
-    alias pS='sudo pacman -S'
-    alias pSs='pacman -Ss'
-    alias pSyu='sudo pacman -Syu'
-fi
-
-[ -x /bin/yaourt ] && alias y='yaourt'
 
 # OpenCL vendor installation.
 [ -d /etc/OpenCL/vendors/ ] && export OPENCL_VENDOR_PATH=/etc/OpenCL/vendors/
@@ -435,7 +398,7 @@ calc() {
     echo "$@" | bc -l
 }
 
-# ROT-13 capable cat.
+# Cat with ROT-13.
 cat13() {
     tr '[a-m][n-z][A-M][N-Z]' '[n-z][a-m][N-Z][A-M]' < "$@"
 }
@@ -457,47 +420,13 @@ catmd() {
     done
 }
 
-# CLI for google define.
-define() {
-    test -n "$1" || { echo "Usage: define <term>" >&2; return 1; }
-
-    wget -qO- -U \
-        "Mozilla/6.0 (Macintosh; I; Intel Mac OS X 11_7_9; de-LI; rv:1.9b4) Gecko/2012010317 Firefox/10.0a4" \
-        http://www.google.co.uk/search\?q\="$@"\&tbs\=dfn:1 \
-        | grep --perl-regexp --only-matching '(?<=<li style="list-style:none">)[^<]+' \
-        | nl | perl -MHTML::Entities -pe 'decode_entities($_)'
-}
-
-# Make a Maildir.
-mkmd() {
-    test -n "$1" || { echo "Usage: mkmd <name>" >&2; return 2; }
-
-    mkdir -pv "$MAILDIR/.$1/cur" "$MAILDIR/.$1/new" "$MAILDIR/.$1/tmp"
-}
-
-# Make a directory with that belongs to user.
+# Make a directory with root permissions with that belongs to user.
 mkudir() {
     test -n "$1" || { echo "Usage: mkudir <directory>" >&2; return 2; }
 
     sudo mkdir -v "$@"
     sudo chown "$USER" "$@"
     sudo chgrp "$USER" "$@"
-}
-
-# Source configuration shells again.
-reshell() {
-    local conf=""
-
-    case $SHELL in
-        "/bin/zsh" ) conf=~/.zshrc ;;
-        "/bin/bash" ) conf=~/.bashrc ;;
-    esac
-
-    test -n "$conf" || { echo "Could not determine shell: '$SHELL'" >&2; return 1; }
-    test -f $conf || { echo "File does not exist: '$conf'" >&2; return 1; }
-
-    source $conf
-    reset
 }
 
 # For convenient file searching.
@@ -548,16 +477,6 @@ sponge() {
     cat > "$tmpfile"
     # Replace the destintation file with the temporary file.
     mv "$tmpfile" "$1"
-}
-
-# CLI for wikipedia.
-wiki() {
-    test -n "$1" || { echo "Usage: wiki <term>" >&2; return 1; }
-
-    dig +short txt "$(echo "$@" | sed 's/\ /_/').wp.dg.cx" \
-        | sed -e 's/" "//g' -e 's/^"//g' -e 's/"$//g' -e 's/ http:/\n\nhttp:/' \
-        | tr -d '\\' \
-        | fmt -w "$(tput cols)"
 }
 
 # Super simple and super strong encryption.
