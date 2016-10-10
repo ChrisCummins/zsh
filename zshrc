@@ -205,6 +205,12 @@ export VISUAL=$EDITOR
 # Development environment.
 export USE_CCACHE=1
 
+# Don't modify prompt when activating Python virtualenv environments.
+# This is because our zsh prompt includes this information.
+#
+# See: https://virtualenv.pypa.io/en/stable/reference/#envvar-VIRTUAL_ENV_DISABLE_PROMPT
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 
 # --------------------------------------------------------------------------
 # Paths.
