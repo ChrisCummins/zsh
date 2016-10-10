@@ -259,7 +259,7 @@ ld_library_path_dirs=( \
     /usr/lib \
     /usr/lib32 \
     /usr/local/lib \
-    ~/torch/install/lib \
+    ~/src/torch/install/lib \
 )
 export LD_LIBRARY_PATH=$(build_path "${ld_library_path_dirs[@]}")
 
@@ -271,7 +271,6 @@ path_dirs=( \
     ~/android-sdks/platform-tools \
     ~/.gem/*/*/bin \
     ~/.gem/*/ruby/*/bin \
-    ~/torch/install/bin \
     ~/src/torch/install/bin/ \
     /Applications/Emacs.app/Contents/MacOS/bin \
     /Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin \
