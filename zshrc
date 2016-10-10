@@ -176,8 +176,6 @@ source "$ZSH/oh-my-zsh.sh"
 # --------------------------------------------------------------------------
 # Shell environment.
 # --------------------------------------------------------------------------
-export EMACSRC="$HOME/.emacs.d/personal/init.el"
-
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
 export HISTSIZE=25000
 export HISTFILE=~/.zsh_history
@@ -204,15 +202,7 @@ export ALTERNATE_EDITOR=''
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 
-# Mail.
-[ -d ~/mail ] && export MAILDIR=~/mail/
-[ -f ~/.muttrc ] && export MUTTRC=~/.muttrc
-[ -f ~/.procmailrc ] && export PROCMAILRC=~/.procmailrc
-[ -f ~/.partrc ] && export PATRC=~/.config/patrc
-
 # Development environment.
-[ -f ~/.config/jhbuildrc ] && export JHBUILDRC=~/.config/jhbuildrc
-[ -f ~/.config/weston.ini ] && export WESTON_INI=~/.config/weston.ini
 export USE_CCACHE=1
 
 
