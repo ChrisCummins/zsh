@@ -415,6 +415,11 @@ catmd() {
     done
 }
 
+# Lookup tldr page, but use man as a fallback
+help() {
+    tldr "$@" 2>/dev/null || { echo "No tldr entry for $1 (try tldr --update)"; man "$@" }
+}
+
 # Make a directory with root permissions with that belongs to user.
 mkudir() {
     test -n "$1" || { echo "Usage: mkudir <directory>" >&2; return 2; }
