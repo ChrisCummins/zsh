@@ -437,21 +437,22 @@ eel() {
 
         # exec
         if [[ "$2" == "--exec" ]]; then
-            echo "[editrun] ${@:3}"
+            echo "[eel] \$ ${@:3}"
             ${@:3}
         else
-            echo "[editrun] $@"
+            echo "[eel] \$ $@"
             $@
         fi
 
         # loop
         ret=$?
-        printf "[editrun] "
         if [ $ret -ne 0 ]; then
-            printf "Return status $ret. "
+            printf "[eel] Return status $ret. Press enter to continue. "
+        else
+            printf "[eel] Press enter to continue. "
         fi
+
         hold=' '
-        printf "Press enter to continue. "
         sed -n q < /dev/tty
         ret=$?
         if [ $ret -ne 0 ]; then
