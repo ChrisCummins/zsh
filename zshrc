@@ -1,4 +1,4 @@
-# -*- mode: sh -*-
+#!/usr/bin/env zsh
 
 # Base directory for zshell.
 export ZSH_ROOT=$HOME/.local/src/zsh
