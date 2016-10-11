@@ -429,6 +429,37 @@ mkudir() {
     sudo chgrp "$USER" "$@"
 }
 
+# Edit exec loop.
+eel() {
+    while true; do
+        # edit
+        $EDITOR $1
+
+        # exec
+        if [[ "$2" == "--exec" ]]; then
+            echo "[editrun] ${@:3}"
+            ${@:3}
+        else
+            echo "[editrun] $@"
+            $@
+        fi
+
+        # loop
+        ret=$?
+        printf "[editrun] "
+        if [ $ret -ne 0 ]; then
+            printf "Return status $ret. "
+        fi
+        hold=' '
+        printf "Press enter to continue. "
+        sed -n q < /dev/tty
+        ret=$?
+        if [ $ret -ne 0 ]; then
+            exit $ret
+        fi
+    done
+}
+
 # For convenient file searching.
 search() {
     test -n "$1" || { echo "Usage: search [dir] <pattern>" >&2; return 1; }
