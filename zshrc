@@ -351,15 +351,6 @@ alias t='touch'
 alias v='vim'
 alias wg='wget'
 
-# Git goodness.
-alias g='git'
-alias gA='git add'
-alias gC='git commit'
-alias gD='git diff'
-alias gL='git log'
-alias gP='git push'
-alias gS='git status'
-
 # Directory stack navigation.
 alias pu='pushd >/dev/null'
 alias po='popd  >/dev/null'
