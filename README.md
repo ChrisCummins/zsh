@@ -1,5 +1,8 @@
 # zsh
 
+**DEPRECATED:** See [dotfile](https://github.com/ChrisCummins/dotfiles) for an
+up-to-date zsh configuration.
+
 Usage:
 
 ```
