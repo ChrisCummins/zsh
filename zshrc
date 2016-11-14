@@ -211,6 +211,14 @@ export USE_CCACHE=1
 # See: https://virtualenv.pypa.io/en/stable/reference/#envvar-VIRTUAL_ENV_DISABLE_PROMPT
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# Enable Travis tab completion
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+# Enable autoenv if installed. https://github.com/kennethreitz/autoenv
+if $(which activate.sh &>/dev/null); then
+    source $(which activate.sh)
+fi
+
 
 # --------------------------------------------------------------------------
 # Paths.
@@ -366,16 +374,9 @@ alias pingg='ping -c 3 www.google.com'
 # Print a table of all defined aliases.
 alias alias_table="alias | sed 's/=/\t/' | sed -r 's/'"'"(.*)"'"'/\1/' | column -t -s$'\t'"
 
-# --------------------------------------------------------------------------
-# Application-specific configuration.
-# --------------------------------------------------------------------------
-
-# "git + hub = github" wrapper.
-[ -x /usr/local/bin/hub ] && alias git='hub'
-
 
 # --------------------------------------------------------------------------
-# Distro-specific configuration.
+# OS-specific configuration.
 # --------------------------------------------------------------------------
 
 # OpenCL vendor installation.
